@@ -1,7 +1,3 @@
-"""
-Checks if your machine is ready for the course.
-Run: python3 module-0/verify_setup.py
-"""
 
 import shutil
 import subprocess
