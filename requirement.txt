@@ -1,0 +1,7 @@
+We need these tools:-
+ollama
+langchain
+langchain-ollama
+langchain-mcp-adapters
+langgraph
+fastmcp
