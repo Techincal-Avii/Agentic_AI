@@ -3,14 +3,14 @@ Checks if your machine is ready for the course.
 Run: python3 module-0/verify_setup.py
 """
 
-import shutil
-import subprocess
-import sys
+import shutil   #This is module one
+import subprocess  #This is module two
+import sys         #This is module three
 
 passed = 0
 total = 0
 
-def check(name, ok, hint=""):
+def check(name, ok, hint=""):  # this is a defined function
     global passed, total
     total += 1
     if ok:

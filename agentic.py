@@ -29,7 +29,7 @@ def inspect_container(container_name: str) -> str:
     )
     return result.stdout or result.stderr
 
-llm = ChatOllama(model="gemma4", temperature=0)
+llm = ChatOllama(model=" llama3.2:3b", temperature=0)
 tools = [list_containers, get_logs, inspect_container]
 agent = create_react_agent(llm, tools)
 
