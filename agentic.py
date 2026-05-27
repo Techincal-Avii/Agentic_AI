@@ -6,6 +6,12 @@ from langchain_core.tools import tool
 from langchain.agents import create_agent as create_react_agent
 
 @tool
+def start_containers() -> str:
+    """Start Docker containers (running)."""
+    result = subprocess.run(["docker", "run", "container_name"], capture_output=True, text=True)
+    return result.stdout or result.stderr
+
+@tool
 def list_containers() -> str:
     """List all Docker containers (running and stopped)."""
     result = subprocess.run(["docker", "ps", "-a"], capture_output=True, text=True)
@@ -29,8 +35,17 @@ def inspect_container(container_name: str) -> str:
     )
     return result.stdout or result.stderr
 
+@tool
+def stop_container(container_name: str) -> str:
+    """Stop the running container."""
+    result = subprocess.run(
+        ["docker", "stop", container_name],
+        capture_output=True, text=True,
+    )
+    return result.stdout or result.stderr
+
 llm = ChatOllama(model=" llama3.2:3b", temperature=0)
-tools = [list_containers, get_logs, inspect_container]
+tools = [list_containers, get_logs, inspect_container, stop_container, start_containers]
 agent = create_react_agent(llm, tools)
 
 print("\nDocker Troubleshooter Agent")
